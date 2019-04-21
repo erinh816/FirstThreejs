@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+
+    <script>
+
+        var scene = new THREE.Scene();
+
+        //create a camera(different types) 4 properties go inside of ()
+        var camera = new THREE.PerspectiveCamera(
+            75, //for the field of view
+            window.innerWidth / widow.innerHeight,//aspect retio
+            0.1,
+            1000
+        )
+
+        //set up a renderer
+        var renderer = new THREE.WebGLRenderer({ antialias: true });
+        //set a clear color on a renderer #e5e5e5 is light grey
+        renderer.setClearColor("#e5e5e5");
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        //append child the renderer DOM element
+        document.body.appendChild(renderer.domElement);
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectMatrix();
+        })
+
+        renderer.render(scene, camera);
+
+
+
+    </script>
+
+</body>
+
+</html>
